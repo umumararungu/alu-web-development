@@ -16,7 +16,8 @@ aside{
     flex: 1;
     overflow-y: auto
 }
-header{
+a:hover{
+    text-decoration: none;
     color:white;
     text-shadow: 0x 1x 3x black;
 }
