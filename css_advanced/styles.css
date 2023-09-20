@@ -8,3 +8,41 @@ header{
     font-family: 'Times New Roman', Times, serif;
 }
 
+.links{
+font-family: Source Sans Pro;
+font-size: 12px;
+font-weight: 700;
+line-height: 15px;
+letter-spacing: 0px;
+text-align: left;
+
+}
+
+a{
+   text-decoration: none;
+   color: white;
+}
+.path1{
+    width: 35.57px;
+height: 8.87px;
+top: 55.68px;
+left: 171.59px;
+rotation: 7 deg;
+
+}
+
+.path2{
+    width: 7.87px;
+height: 11.85px;
+top: 35.02px;
+left: 194.71px;
+
+}
+
+.path3{
+    width: 7.87px;
+height: 11.85px;
+top: 35.02px;
+left: 175.99px;
+
+}
