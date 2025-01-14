@@ -5,11 +5,6 @@
 
 BaseCaching = __import__("base_caching").BaseCaching
 
-class BaseCaching:
-    'print(__import__("my_module").MyClass.__doc__)'
-    def __init__(self):
-        'print(__import__("my_module").my_function.__doc__)'
-        self.cache_data = {}
 
 class BasicCache(BaseCaching):
     'print(__import__("my_module").MyClass.__doc__)'
