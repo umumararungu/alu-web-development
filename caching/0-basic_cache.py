@@ -3,7 +3,7 @@
 """
 
 
-from base_caching import BaseCaching
+BaseCaching = __import__("base_caching").BaseCaching
 
 class BaseCaching:
     'print(__import__("my_module").MyClass.__doc__)'
