@@ -1,7 +1,9 @@
 #!/usr/bin/python3
 """ 0. Basic dictionary
 """
-import *
+
+
+from base_caching import BaseCache
 
 class BaseCaching:
     'print(__import__("my_module").MyClass.__doc__)'
