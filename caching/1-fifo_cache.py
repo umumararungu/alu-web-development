@@ -19,12 +19,12 @@ class FIFOCache(BaseCaching):
         """ 1. FIFO caching
         """
         if key is None or item is None:
-            return 
+            return
 
         if key in self.cache_data:
             self.cache_data[key] = item
             return
-        
+
         if len(self.cache_data) >= BaseCaching.MAX_ITEMS:
             old_key = self.order.popleft()
             del self.cache_data[old_key]
@@ -33,7 +33,7 @@ class FIFOCache(BaseCaching):
         self.cache_data[key] = item
         self.order.append(key)
 
-    def get(self,key):
+    def get(self, key):
         """ 1. FIFO caching
         """
         if key is None or key not in len(self.cache_data):
