@@ -13,7 +13,7 @@ class FIFOCache(BaseCaching):
         """ 1. FIFO caching
         """
         super().__init__()
-        # self.cache_data = {}
+        self.order = deque()
 
     def put(self, key, item):
         """ 1. FIFO caching
