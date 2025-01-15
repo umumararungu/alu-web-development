@@ -7,11 +7,17 @@ BaseCaching = __import__("base_caching").BaseCaching
 
 
 class FIFOCache(BaseCaching):
+    """ 1. FIFO caching
+    """
     def __init__(self):
+        """ 1. FIFO caching
+        """
         super().__init__()
         # self.cache_data = {}
 
     def put(self, key, item):
+        """ 1. FIFO caching
+        """
         if key is None or item is None:
             return 
 
@@ -28,6 +34,8 @@ class FIFOCache(BaseCaching):
         self.order.append(key)
 
     def get(self,key):
+        """ 1. FIFO caching
+        """
         if key is None or key not in len(self.cache_data):
             return None
         return self.cache_data[key]
