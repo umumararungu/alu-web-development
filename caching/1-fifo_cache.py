@@ -2,7 +2,7 @@
 """ 1. FIFO caching
 """
 
-# from collections import deque
+from collections import deque
 BaseCaching = __import__("base_caching").BaseCaching
 
 
