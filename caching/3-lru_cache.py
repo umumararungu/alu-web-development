@@ -6,7 +6,7 @@ from collections import deque
 BaseCaching = __import__("base_caching").BaseCaching
 
 
-class LIFOCache(BaseCaching):
+class LRUCache(BaseCaching):
     """ 3. LRU CachingCaching
     """
     def __init__(self):
