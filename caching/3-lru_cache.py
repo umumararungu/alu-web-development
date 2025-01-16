@@ -29,7 +29,7 @@ class LRUCache(BaseCaching):
             self.order.append(key)
         else:
             if len(self.cache_data) >= BaseCaching.MAX_ITEMS:
-                old_key = self.order.pop()
+                old_key = self.order.pop(0)
                 del self.cache_data[old_key]
                 print(f"DISCARD: {old_key}")
 
@@ -41,7 +41,6 @@ class LRUCache(BaseCaching):
         """
         if key is None or key not in self.cache_data:
             return None
-
 
         self.order.remove(key)
         self.order.append(key)
