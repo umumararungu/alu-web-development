@@ -13,7 +13,7 @@ class LRUCache(BaseCaching):
         """3. LRU CachingCaching
         """
         super().__init__()
-        self.order = deque()
+        self.order = []
 
     def put(self, key, item):
         """ 3. LRU CachingCaching
