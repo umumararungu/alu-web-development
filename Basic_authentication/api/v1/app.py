@@ -40,6 +40,10 @@ def before():
     if auth:
         paths = ['/api/vi/status',
                  '/api/v1/unauthorized/']
+        if not auth.require_auth(request.path, paths):
+            return
+        if not auth.authorization_header(request):
+            abort(401)
 
 if __name__ == "__main__":
     host = getenv("API_HOST", "0.0.0.0")
