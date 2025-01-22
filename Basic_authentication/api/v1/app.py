@@ -44,7 +44,7 @@ def forbidden(error) -> str:
 @app.before_request
 def before():
     "before request"
-   
+
     if auth:
         paths = ['/api/vi/status',
                  '/api/v1/unauthorized/', '/api/v1/forbidden/']
