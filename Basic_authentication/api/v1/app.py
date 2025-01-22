@@ -40,13 +40,14 @@ def forbidden(error) -> str:
     """
     return jsonify({"error": "Forbidden"}), 403
 
+
 @app.before_request
 def before():
     "before request"
-        
+   
     if auth:
         paths = ['/api/vi/status',
-                 '/api/v1/unauthorized/','/api/v1/forbidden/']
+                 '/api/v1/unauthorized/', '/api/v1/forbidden/']
 
         if not auth.require_auth(request.path, paths):
             return
