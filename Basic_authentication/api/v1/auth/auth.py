@@ -10,6 +10,14 @@ class Auth:
     '''first auth class'''
     def require_auth(self, path: str, excluded_paths: List[str]) -> bool:
         '''require auth function'''
+        if path is None:
+            return True
+        
+        if excluded_paths is None or excluded_paths == 0:
+            return True
+        
+        if path in excluded_paths:
+            return False
         return False
 
     def authorization_header(self, request=None) -> str:
