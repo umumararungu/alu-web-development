@@ -2,7 +2,8 @@
 """
 Route module for the API
 """
-
+# from api.v1.auth.auth import Auth # type: ignore
+# from api.v1.auth.basic_auth import BasicAuth # type: ignore
 from os import getenv
 from api.v1.views import app_views
 from flask import Flask, jsonify, abort, request
