@@ -3,6 +3,7 @@
 Route module for the API
 """
 from api.v1.auth.auth import Auth
+from api.v1.auth.basic_auth import BasicAuth
 # from api.v1.auth.basic_auth import BasicAuth # type: ignore
 from os import getenv
 from api.v1.views import app_views
@@ -16,8 +17,11 @@ app.register_blueprint(app_views)
 CORS(app, resources={r"/api/v1/*": {"origins": "*"}})
 auth = None
 
-if os.getenv("AUTH_TYPE") == "auth":
+if os.getenv("AUTH_TYPE") == "basic_auth":
+    auth = BasicAuth()
+elif os.getenv("AUTH_TYPE") == "auth":
     auth = Auth()
+
 
 
 @app.errorhandler(404)
