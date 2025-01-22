@@ -31,4 +31,4 @@ def unauthorized() -> str:
     """ GET /api/v1/unathorized
     abort 401
     """
-    abort (401)
+    abort(401)
