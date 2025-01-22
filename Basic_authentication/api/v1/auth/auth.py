@@ -12,13 +12,15 @@ class Auth:
         '''require auth function'''
         if path is None:
             return True
-        
+
         if excluded_paths is None or excluded_paths == 0:
             return True
-        
+
         if path in excluded_paths:
             return False
-        return False
+        else:
+            return True
+
 
     def authorization_header(self, request=None) -> str:
         '''authorization header function'''
