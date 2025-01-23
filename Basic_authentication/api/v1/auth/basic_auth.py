@@ -15,11 +15,12 @@ class BasicAuth(Auth):
         '''extact base function'''
         if authorization_header is None:
             return None
-        if authorization_header is not str:
-            return None
-        if authorization_header.DoesNotStartWith('Basic') and authorization_header.Endswith(" "):
-            return None
-        
-        else:
-            return authorization_header.Basic
 
+        elif authorization_header is not str:
+            return None
+
+        elif authorization_header.DoesNotStartWith('Basic') and authorization_header.Endswith(" "):
+            return None
+
+        else:
+            return authorization_header
