@@ -20,7 +20,7 @@ class BasicAuth(Auth):
         if authorization_header is not str:
             return None
 
-        if not authorization_header.startwith("Basic "):
+        if not authorization_header.startswith("Basic "):
             return None
 
         return authorization_header[6:]
