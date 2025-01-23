@@ -11,7 +11,8 @@ from typing import TypeVar
 class BasicAuth(Auth):
     """ BasicAuth class.
     """
-    def extract_base64_authorization_header(self, authorization_header: str) -> str:
+    def extract_base64_authorization_header(self,
+                                            authorization_header: str) -> str:
         '''extact base function'''
         if authorization_header is None:
             return None
@@ -19,7 +20,8 @@ class BasicAuth(Auth):
         elif authorization_header is not str:
             return None
 
-        elif authorization_header.DoesNotStartWith('Basic') and authorization_header.Endswith(" "):
+        elif authorization_header.DoesNotStartWith('Basic') and
+            authorization_header.Endswith(" "):
             return None
 
         else:
