@@ -23,5 +23,4 @@ class BasicAuth(Auth):
         elif not authorization_header.startwith("Basic "):
             return None
 
-        else:
-            return authorization_header[6:]
+        return authorization_header[6:]
