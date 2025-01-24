@@ -31,7 +31,7 @@ class BasicAuth(Auth):
         except Exception:
             return
 
-    def extract_user_credentials(self, db64: str) -> (str, str): # type: ignore
+    def extract_user_credentials(self, db64: str) -> (str, str):  # type: ignore
         """ def extract_user_credentials.
         """
         if not db64 or type(db64) != str or ":" not in db64:
@@ -39,26 +39,26 @@ class BasicAuth(Auth):
         a, b = db64.split(':')[0], "".join(db64.split(':', 1)[1:])
         return (a, b)
 
-    def user_object_from_credentials(self, user_email: str,
-                                     user_pwd: str) -> TypeVar('User'): # type: ignore
+    def user_object_from_credentials(self, u_email: str,
+                                     u_pwd: str) -> TypeVar('User'):  # type: ignore
         """ def user_object_from_credentials.
         """
-        if (not user_email or
-                type(user_email) != str or
-                not user_pwd or type(user_pwd) != str):
+        if (not u_email or
+                type(u_email) != str or
+                not u_pwd or type(u_pwd) != str):
             return
         user = None
         try:
-            user = User.search({"email": user_email})
+            user = User.search({"email": u_email})
         except Exception:
             return
         if not user:
             return
         for u in user:
-            if u.is_valid_password(user_pwd):
+            if u.is_valid_password(u_pwd):
                 return u
 
-    def current_user(self, request=None) -> TypeVar('User'): # type: ignore
+    def current_user(self, request=None) -> TypeVar('User'):  # type: ignore
         """ def current_user.
         """
         header = self.authorization_header(request)
