@@ -43,7 +43,7 @@ class BasicAuth(Auth):
 
         return decoded_value
 
-    def extract_user_credentials(self, db64: str) -> (str, str):
+    def extract_user_credentials(self, db64: str) -> (str, str): # type: ignore
         """extract function
         """
         if db64 is None:
@@ -61,7 +61,7 @@ class BasicAuth(Auth):
         return usr_email, usr_password
 
     def user_object_from_credentials(self, u_email: str,
-                                     u_pwd: str) -> TypeVar('User'):
+                                     u_pwd: str) -> TypeVar('User'): # type: ignore
         """users"""
         if not isinstance(u_pwd, str):
             return None
@@ -80,7 +80,7 @@ class BasicAuth(Auth):
             if users.is_valid_password(u_pwd):
                 return users
 
-    def current_user(self, request=None) -> TypeVar('User'):
+    def current_user(self, request=None) -> TypeVar('User'): # type: ignore
         """current user function"""
         header = self.authorization_header(request)
         b64header = self.extract_base64_authorization_header(header)
