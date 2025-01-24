@@ -31,7 +31,7 @@ class BasicAuth(Auth):
         except Exception:
             return
 
-    def extract_user_credentials(self, db64: str) -> (str, str):  # type: ignore
+    def extract_user_credentials(self, db64: str) -> (str, str):
         """ def extract_user_credentials.
         """
         if not db64 or type(db64) != str or ":" not in db64:
@@ -40,7 +40,7 @@ class BasicAuth(Auth):
         return (a, b)
 
     def user_object_from_credentials(self, u_email: str,
-                                     u_pwd: str) -> TypeVar('User'):  # type: ignore
+                                     u_pwd: str) -> TypeVar('User'):  # type:
         """ def user_object_from_credentials.
         """
         if (not u_email or
