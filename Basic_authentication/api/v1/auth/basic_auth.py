@@ -26,15 +26,15 @@ class BasicAuth(Auth):
         return authorization_header[6:]
 
     def decode_base64_authorization_header(self,
-                                           base64_authorization_header: str) -> str:
+                                           b64: str) -> str:
         '''other function'''
-        if base64_authorization_header is None:
+        if b64 is None:
             return None
 
-        if not isinstance(base64_authorization_header, str):
+        if not isinstance(b64, str):
             return None
 
-        base64_encoded = base64_authorization_header
+        base64_encoded = b64
 
         try:
             decoded_value = base64.b64decode(base64_encoded).decode('utf-8')
@@ -44,16 +44,16 @@ class BasicAuth(Auth):
 
         return decoded_value
 
-    def extract_user_credentials(self, decoded_base64_authorization_header: str) -> (str, str):
+    def extract_user_credentials(self, db64: str) -> (str, str):
         """extract function
         """
-        if decoded_base64_authorization_header is None:
+        if db64 is None:
             return None, None
 
-        if not isinstance(decoded_base64_authorization_header, str):
+        if not isinstance(db64, str):
             return None, None
 
-        base64_decoded = decoded_base64_authorization_header
+        base64_decoded = db64
 
         if ":" not in base64_decoded:
             return None, None
