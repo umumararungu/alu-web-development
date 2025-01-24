@@ -1,40 +1,39 @@
 #!/usr/bin/env python3
-'''auth class'''
-
+""" 3. Auth class
+"""
 
 from flask import request
 from typing import List, TypeVar
 
 
 class Auth:
-    '''first auth class'''
+    """ Auth class.
+    """
+
     def require_auth(self, path: str, excluded_paths: List[str]) -> bool:
-        '''require auth function'''
-        if path is None:
+        """ def require_auth
+        """
+        if not path or not excluded_paths:
             return True
-
-        if excluded_paths is None or len(excluded_paths) == 0:
-            return True
-
-        if not path.endswith('/'):
-            normal_path = path + '/'
-        else:
-            normal_path = path
-
-        for excluded in excluded_paths:
-            if normal_path.startswith(excluded):
+        path = path + '/' if path[-1] != '/' else path
+        has_wildcard = any(x.endswith("*") for x in excluded_paths)
+        if not has_wildcard:
+            return path not in excluded_paths
+        for e in excluded_paths:
+            if e.endswith("*"):
+                if path.startswith(e[:-1]):
+                    return False
+            if path == e:
                 return False
         return True
 
     def authorization_header(self, request=None) -> str:
-        '''authorization header function'''
-        if request is None:
-            return None
-        elif not request.headers.get("Authorization"):
-            return None
-        else:
+        """ def authorization_header
+        """
+        if request:
             return request.headers.get("Authorization")
 
     def current_user(self, request=None) -> TypeVar('User'): # type: ignore
-        '''current user fucntion'''
+        """ def curent_user
+        """
         return None
