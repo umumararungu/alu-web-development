@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-'''çomment'''
-
+""" 6. Basic auth
+"""
 
 from api.v1.auth.auth import Auth
 import base64
@@ -11,64 +11,42 @@ from typing import TypeVar
 class BasicAuth(Auth):
     """ BasicAuth class.
     """
-    def extract_base64_authorization_header(self,
-                                            authorization_header: str) -> str:
-        '''extact base function'''
-        if authorization_header is None:
-            return None
 
-        if not isinstance(authorization_header, str):
-            return None
-
-        if not authorization_header.startswith("Basic "):
-            return None
-
-        return authorization_header[6:]
+    def extract_base64_authorization_header(self, ah: str) -> str:
+        """ def extract_base64_authorization_header.
+        """
+        if not ah or type(ah) != str or not ah.startswith("Basic "):
+            return
+        return "".join(ah.split(" ")[1:])
 
     def decode_base64_authorization_header(self, b64: str) -> str:
-        '''other function'''
-        if b64 is None:
-            return None
-
-        if not isinstance(b64, str):
-            return None
-
-        base64_encoded = b64
-
-        try:
-            decoded_value = base64.b64decode(base64_encoded).decode('utf-8')
-            return decoded_value
-        except (ValueError, UnicodeDecodeError):
-            return None
-
-        return decoded_value
-
-    def extract_user_credentials(self, db64: str) -> (str, str): # type: ignore
-        """extract function
+        """ def decode_base64_authorization_header.
         """
-        if db64 is None:
-            return None, None
+        if not b64 or type(b64) != str:
+            return
+        try:
+            b64_bytes = b64.encode('utf-8')
+            res = base64.b64decode(b64_bytes)
+            return res.decode('utf-8')
+        except Exception:
+            return
 
-        if not isinstance(db64, str):
-            return None, None
-
-        base64_decoded = db64
-
-        if ":" not in base64_decoded:
-            return None, None
-
-        usr_email, usr_password = base64_decoded.split(':', 1)
-        return usr_email, usr_password
+    def extract_user_credentials(self, db64: str) -> (str, str):
+        """ def extract_user_credentials.
+        """
+        if not db64 or type(db64) != str or ":" not in db64:
+            return (None, None)
+        a, b = db64.split(':')[0], "".join(db64.split(':', 1)[1:])
+        return (a, b)
 
     def user_object_from_credentials(self, u_email: str,
-                                     u_pwd: str) -> TypeVar('User'): # type: ignore
-        """users"""
-        if not isinstance(u_pwd, str):
-            return None
-
-        if not isinstance(u_email, str):
-            return None
-
+                                     u_pwd: str) -> TypeVar('User'):  # type:
+        """ def user_object_from_credentials.
+        """
+        if (not u_email or
+                type(u_email) != str or
+                not u_pwd or type(u_pwd) != str):
+            return
         user = None
         try:
             user = User.search({"email": u_email})
@@ -76,12 +54,13 @@ class BasicAuth(Auth):
             return
         if not user:
             return
-        for users in user:
-            if users.is_valid_password(u_pwd):
-                return users
+        for u in user:
+            if u.is_valid_password(u_pwd):
+                return u
 
-    def current_user(self, request=None) -> TypeVar('User'): # type: ignore
-        """current user function"""
+    def current_user(self, request=None) -> TypeVar('User'):  # type: ignore
+        """ def current_user.
+        """
         header = self.authorization_header(request)
         b64header = self.extract_base64_authorization_header(header)
         decoded = self.decode_base64_authorization_header(b64header)
