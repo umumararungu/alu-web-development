@@ -9,7 +9,9 @@ from sqlalchemy import Column, Integer, String
 Base = declarative_base()
 engine = create_engine('sqlite:///:memory:', echo=True)
 
+
 class User(Base):
+    """User class"""
     __tablename__ = 'users'
     id = Column(Integer, primary_key=True)
     email = Column(String(250), nullable=False)
@@ -18,5 +20,5 @@ class User(Base):
     reset_token = Column(String(250), nullable=True)
 
     def __repr__(self):
-       return "<User(email='%s', session_id='%s', hashed_password='%s')>" % (
-                            self.email, self.hashed_password, self.session_id)
+       return "<User(email='%s')>" % (
+                            self.email)
