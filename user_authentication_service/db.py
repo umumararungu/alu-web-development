@@ -8,6 +8,8 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from user import Base, User
 from sqlalchemy.orm import sessionmaker
+from sqlalchemy.exc import InvalidRequestError
+from sqlalchemy.orm.exc import NoResultFound
 
 # engine = create_engine("mysql://scott:tiger@hostname/dbname",
 #                             encoding='latin1', echo=True)
@@ -34,3 +36,15 @@ class DB:
         self._session.add(adding_user)
         self._session.commit()
         return adding_user
+    
+    def find_user(self, **kwargs) -> User:
+        if kwargs is None:
+            raise InvalidRequestError
+        finder = self._session.query(User).filter_by(**kwargs).first()
+
+        if finder is None:
+            raise NoResultFound
+        
+        return finder
+        
+
