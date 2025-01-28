@@ -21,11 +21,11 @@ class DB:
         Base.metadata.create_all(self._engine)
         self.__session = None
 
-    def add_user(self, email, hashed_password):
-        self.email = email
-        self.hashed_password = hashed_password
-        adding = User(email = self.email, hashed_password = self.hashed_password)
-        session.add(adding)
+    def add_user(self, email = str, hashed_password = str) -> User:
+        adding = User(email = email, hashed_password = hashed_password)
+        self._session.add(adding)
+        self._session.commit(adding)
+        return adding
 
 
     @property
