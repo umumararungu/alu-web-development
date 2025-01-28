@@ -32,12 +32,14 @@ class DB:
         return self.__session
 
     def add_user(self, email: str, hashed_password: str) -> User:
+        """Ädding new user function"""
         adding_user = User(email=email, hashed_password=hashed_password)
         self._session.add(adding_user)
         self._session.commit()
         return adding_user
 
     def find_user_by(self, **kwargs) -> User:
+        """"finding a user on first row function"""
         if kwargs is None:
             raise InvalidRequestError
         finder = self._session.query(User).filter_by(**kwargs).first()
@@ -48,6 +50,7 @@ class DB:
         return finder
 
     def update_user(self, user_id: int, **kwargs) -> None:
+        """updating user accoring to  user id"""
         id_to_update = self.find_user_by(id=user_id)
         for key, value in kwargs.items():
             if not hasattr(id_to_update, key):
