@@ -2,12 +2,16 @@
 """database creation"""
 
 
+from requests import session
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
+from user import Base, User
+from sqlalchemy.orm import sessionmaker
 
-from user import Base
-
+# engine = create_engine("mysql://scott:tiger@hostname/dbname",
+#                             encoding='latin1', echo=True)
+Session = sessionmaker()
 
 class DB:
 
@@ -18,10 +22,10 @@ class DB:
         self.__session = None
 
     def add_user(self, email, hashed_password):
-        self_email = email
+        self.email = email
         self.hashed_password = hashed_password
-    
-
+        adding = User(email = self.email, hashed_password = self.hashed_password)
+        session.add(adding)
 
 
     @property
