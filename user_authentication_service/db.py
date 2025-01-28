@@ -17,6 +17,13 @@ class DB:
         Base.metadata.create_all(self._engine)
         self.__session = None
 
+    def add_user(self, email, hashed_password):
+        self_email = email
+        self.hashed_password = hashed_password
+    
+
+
+
     @property
     def _session(self):
         if self.__session is None:
