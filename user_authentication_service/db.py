@@ -36,7 +36,7 @@ class DB:
         self._session.add(adding_user)
         self._session.commit()
         return adding_user
-    
+
     def find_user_by(self, **kwargs) -> User:
         if kwargs is None:
             raise InvalidRequestError
@@ -44,7 +44,5 @@ class DB:
 
         if finder is None:
             raise NoResultFound
-        
-        return finder
-        
 
+        return finder
