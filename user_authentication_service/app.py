@@ -6,7 +6,8 @@ from flask import Flask, jsonify
 app = Flask(__name__)
 
 @app.route("/", methods=["GET"])
-def home(payload):
+def home():
+    payload = {"message": "Bienvenue"}
     return jsonify(payload)
 
 if __name__ == "__main__":
