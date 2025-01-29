@@ -7,6 +7,7 @@ from auth import Auth
 app = Flask(__name__)
 AUTH = Auth()
 
+
 @app.route("/", methods=["GET"])
 def home():
     payload = {"message": "Bienvenue"}
@@ -19,10 +20,9 @@ def users():
     password = request.form.get('password')
     try:
         AUTH.register_user(email, password)
-        return jsonify({"email":email, "message":"user created"}), 200
+        return jsonify({"email" email, "message": "user created"}), 200
     except Exception:
-        return jsonify({"message":"email already registered"}), 400
-
+        return jsonify({"message": "email already registered"}), 400
 
 
 if __name__ == "__main__":
