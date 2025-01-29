@@ -8,13 +8,13 @@ app = Flask(__name__)
 AUTH = Auth()
 
 
-@app.route("/", methods=["GET"])
+@app.route("/", methods=["GET"], strict_slashes=False)
 def home():
     payload = {"message": "Bienvenue"}
     return jsonify(payload)
 
 
-@app.route("/", methods=["POST"])
+@app.route("/", methods=["POST"], strict_slashes=False)
 def users():
     email = request.form.get('email')
     password = request.form.get('password')
