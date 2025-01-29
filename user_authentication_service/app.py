@@ -14,7 +14,7 @@ def home():
     return jsonify(payload)
 
 
-@app.route("/", methods=["POST"], strict_slashes=False)
+@app.route("/users", methods=["POST"], strict_slashes=False)
 def users():
     email = request.form.get('email')
     password = request.form.get('password')
