@@ -10,6 +10,7 @@ AUTH = Auth()
 
 @app.route("/", methods=["GET"], strict_slashes=False)
 def home():
+    """home function"""
     payload = {"message": "Bienvenue"}
     return jsonify(payload)
 
@@ -24,6 +25,7 @@ def users():
     except Exception:
         return jsonify({"message": "email already registered"}), 400
 
+
 @app.route("/sessions", methods=["POST"], strict_slashes=False)
 def login():
     email = request.form.get('email')
@@ -34,6 +36,7 @@ def login():
     response = jsonify({'email': email, 'message': 'logged in'})
     response.set_cookie('session_id', session_id)
     return response
+
 
 @app.route('/sessions', methods=['DELETE'], strict_slashes=False)
 def logout():
