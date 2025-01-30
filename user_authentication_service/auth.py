@@ -10,6 +10,7 @@ from user import User
 
 
 def _hash_password(password: str) -> str:
+    """hashed password function"""
     return bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
 
 
