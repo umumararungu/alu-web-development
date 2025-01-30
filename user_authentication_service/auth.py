@@ -30,11 +30,11 @@ class Auth:
     def register_user(self, email: str, password: str) -> User:
         """registering user function"""
         try:
-            _user = self._db.find_user_by(email=email)
+            user = self._db.find_user_by(email=email)
         except NoResultFound:
             _password = _hash_password(password)
-            _user = self._db.add_user(email, _password)
-            return _user
+            user = self._db.add_user(email, _password)
+            return user
         else:
             raise ValueError('User{email} already exists')
 
